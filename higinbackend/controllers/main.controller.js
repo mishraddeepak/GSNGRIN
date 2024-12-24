@@ -64,6 +64,55 @@ const handler = {
 
 
 
+    // updateVerificationStatus: async function (req, res) {
+    //     console.log("Request from the frontend coming........", req.body);
+    //     const { _Id, managerType, status, isHidden } = req.body;
+    
+    //     const managerFieldMap = {
+    //         'General Manager': 'GeneralManagerSigned',
+    //         'Store Manager': 'StoreManagerSigned',
+    //         'Purchase Manager': 'PurchaseManagerSigned',
+    //         'Account Manager': 'AccountManagerSigned',
+    //         'isHidden': 'isHidden'
+    //     };
+    
+    //     try {
+    //         // Determine the field to update based on the managerType
+    //         const updateField = managerFieldMap[managerType];
+    
+    //         // Prepare update payload
+    //         const updatePayload = {
+    //             [updateField]: status === 'checked',
+    //         };
+    
+    //         // Include `isHidden` only if it exists in the request body
+    //         if (typeof isHidden !== 'undefined') {
+    //             updatePayload.isHidden = isHidden;
+    //         }
+    
+    //         // Update the document
+    //         const result = await gsnEntries.findByIdAndUpdate(
+    //             _Id,
+    //             updatePayload,
+    //             { new: true } // Return the updated document
+    //         );
+    
+    //         console.log(result);
+    //         if (!result) {
+    //             return res.status(404).json({ message: 'Item not found' });
+    //         }
+    
+    //         return res.status(200).json({ 
+    //             message: 'Verification status updated successfully', 
+    //             data: result 
+    //         });
+    //     } catch (err) {
+    //         console.error("Error updating verification status", err);
+    //         return res.status(500).json({ message: 'Server error' });
+    //     }
+    // }
+    
+
 
     updateVerificationStatus: async function (req, res) {
         console.log("request from the fronend coming........", req.body)
@@ -80,18 +129,17 @@ const handler = {
 
 
         try {
-            // Determine the field to update based on the managerType
-            // const updateField = `${managerType}Signed`;
+            
             const updateField = managerFieldMap[managerType];
 
             // Update the document
-            const result = await gsnEntries.findByIdAndUpdate(_Id, 
+            const result = await Entries.findByIdAndUpdate(_Id, 
                 { 
                     [updateField]: status === 'checked',
                     isHidden: isHidden  // Set isHidden based on status 
                 },
                  { new: true });
-
+console.log(result)
             if (!result) {
                 return res.status(404).json({ message: 'Item not found' });
             }

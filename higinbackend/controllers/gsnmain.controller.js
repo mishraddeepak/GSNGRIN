@@ -8,6 +8,7 @@ const gsnHandler = {
             try {
              console.log(req.body)
                 const { grinNo, grinDate, gsn, gsnDate, poNo, poDate, partyName, innoviceno, innoviceDate, receivedFrom, lrNo, lrDate, transName, vehicleNo, file, materialInfo, tableData } = req.body
+                console.log("file name is....",req.file)
                 const filePath = `gsnfiles/${req.file.filename}`
                 console.log("new path is.......", filePath)
 

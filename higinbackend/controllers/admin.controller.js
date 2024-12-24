@@ -33,6 +33,7 @@ const adminHandler = {
             if (user) {
                 return res.send("user exists")
             }
+            
             const hashPassword = await bcrypt.hash(password, 10)
             const newauthority = new admin({
                 name,

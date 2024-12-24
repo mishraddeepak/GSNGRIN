@@ -77,7 +77,7 @@ export default function ViewForm({ managerType }) {
     
         // Toggle status based on current state
         const newHiddenState = !showHideState[_id];
-    
+    console.log(newHiddenState)
         try {
             const url = process.env.REACT_APP_BACKEND_URL;
             
@@ -452,9 +452,3 @@ export default function ViewForm({ managerType }) {
         </>
     );
 }
-
-
-
-
-
-

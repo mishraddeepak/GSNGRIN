@@ -18,7 +18,9 @@ console.log(value)
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      console.log(username,password)
       const url = process.env.REACT_APP_BACKEND_URL;
+console.log(url)
       const response = await axios.post(`${url}/log-in/${role}`, {
         username,
         password,
@@ -54,10 +56,12 @@ console.log(value)
             navigate('/');
         }
       }
-    } catch (error) {
-      alert(`${error.response.data.message}`);
-      console.error('Error during login', error);
-    }
+    }  catch (error) {
+      const errorMessage = error.response?.data?.message|| "An unexpected error occured. Please try again."
+      
+            alert(errorMessage);
+            console.error('Error during login', error);
+          }
   };
 
   // Toggle password visibility
